@@ -1,0 +1,50 @@
+{
+  "name": "tree-gallery",
+  "version": "1.0.0",
+  "description": "## Task",
+  "main": ".eslintrc.js",
+  "type": "module",
+  "jest": {
+    "verbose": true
+  },
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
+    "build": "babel src -d dist --presets es2015",
+    "watch": "babel src -d dist --presets es2015 -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/anastasiia.bardyuzha/course_tree-from-object_dom"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/plugin-transform-spread": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-inline-dotenv": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^8.7.0",
+    "jest": "^27.4.7"
+  },
+  "dependencies": {
+    "@babel/core": "^7.16.7",
+    "axios": "^0.24.0",
+    "babel-jest": "^27.4.6",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2020": "^1.0.2",
+    "dotenv": "^16.0.0",
+    "jest-mock-axios": "^4.5.0"
+  }
+}
