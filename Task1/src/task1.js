@@ -1,4 +1,4 @@
-import dotenv from 'dotenv'
+/*import dotenv from 'dotenv'
 dotenv.config()
 
 const getProducts = async() => {
@@ -6,9 +6,21 @@ const getProducts = async() => {
   const data = await response.json();
 
   return data;
-};
+};*/
 
-const sortProducts = [];
+const getProducts = async() => {
+   try {
+   const response = await fetch(`https://fakestoreapi.com/products`);
+   const data = await response.json();
+ 
+   return data;
+   }
+   catch (e) {
+      return null;
+    }
+ };
+
+let sortProducts = [];
 
 const sortPriceHightToLower = () => {
   return (a, b) => a.price > b.price ? 1 : -1;
@@ -20,15 +32,11 @@ const sortCategoryByAlphabet = () => {
  
 
 getProducts().then(data => {
-
-  data.forEach((el, i) => {
-    sortProducts.push(data[i]);
-  });
+  sortProducts = data.slice()
 
   sortProducts
     .sort(sortPriceHightToLower())
     .sort(sortCategoryByAlphabet());
+  console.log(sortProducts);
 },
 );
-
-console.log(sortProducts);
