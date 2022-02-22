@@ -1,43 +1,35 @@
 'use strict';
 
-/*import dotenv from 'dotenv'
-dotenv.config()
+import {getData} from './getData.js';
 
-`${process.env.BACKEND_URL}/todos`
-`${process.env.BACKEND_URL}/users`
-*/
 
-let addTodo = [];
-let addUsers = [];
-
-const getInformationFromUrl = async(url) => {
+export const addTodo = async() => {
   try{
-    const response = await fetch(url);
-    const data = await response.json();
+
+    const todosInfo = await getData('https://jsonplaceholder.typicode.com/todos');
+
+    const usersInfo = await getData('https://jsonplaceholder.typicode.com/users');
+
+    await usersInfo.map((elementUser) => {
      
-    return data;
-  } catch (error){
-    return error;
+      const arrayOfCompleteTodo = [];
+   
+      todosInfo.map((elementTodo) => {
+
+        if (elementUser.id === elementTodo.userId && elementTodo.completed){
+
+          arrayOfCompleteTodo.push(elementTodo);
+
+          elementUser.todo = arrayOfCompleteTodo;
+
+        }
+      });
+    });
+console.log(usersInfo);
+    return usersInfo;
+  } 
+  catch(error){
+     
+   return null
   }
 };
-
-getInformationFromUrl('https://jsonplaceholder.typicode.com/todos').then(dataTodo => {
-  addTodo = [...dataTodo];
-});
-
-getInformationFromUrl('https://jsonplaceholder.typicode.com/users').then(dataUsers => {
-
-  addUsers = [...dataUsers];
-  console.log(addUsers);
-
-  addUsers.map((elementUser) => {
-    const array = [];
-
-    addTodo.map((elementTodo) => {
-      if (elementUser.id === elementTodo.userId && elementTodo.completed){
-        array.push(elementTodo);
-        elementUser.todo = array;
-      }
-    });
-  });
-});
